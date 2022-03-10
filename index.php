@@ -3,11 +3,11 @@
 // routing logic
 
 $request = $_SERVER['REQUEST_URI'];
-$path = "/Project";
+$path = "/php-project";
 // echo  $path . '/tuts';
 // echo $request;
 switch ($request) {
-    case $path . '/':
+    case  $path.'/':
         require __DIR__ . '/views/main/index.php';
         break;
     case '':
@@ -15,10 +15,10 @@ switch ($request) {
         break;
 
 
-    case $path . '/tuts':
+    case  $path."/tuts":
         require __DIR__ .  '/views/main/tuts.php';
         break;
-
+ 
 
 
     default:
