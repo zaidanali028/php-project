@@ -2,7 +2,7 @@
 <html lang="en">
 
 
-<?php include './views/admin/partials/header.php' ?>
+
 
 
 <body>

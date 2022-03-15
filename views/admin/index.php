@@ -2,13 +2,13 @@
 <html lang="en">
 
 <!-- header here -->
-<?php include 'views/partials/admin/header.php' ?>
+<?php include 'views/partials/admin/header-main.php' ?>
 
   <body>
   
     <div class="container-scroller">
       <!-- partial:partials/_navbar.html -->
-      <?php include 'views/partials/admin/navbar.php' ?>
+      <?php include 'views/partials/admin/navbar-main.php' ?>
 
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">
@@ -41,7 +41,7 @@
         <!-- partial -->
         <!-- partial:partials/_sidebar.html -->
       <!-- sidebar  here-->
-      <?php include 'views/partials/admin/sidebar.php' ?>
+      <?php include 'views/partials/admin/sidebar-main.php' ?>
 
         <!-- partial -->
         <div class="main-panel">
@@ -563,7 +563,7 @@
           </div>
           <!-- content-wrapper ends -->
           <!-- partial:partials/_footer.html -->
-          <?php include 'views/partials/admin/footer.php'; ?>
+          <?php include 'views/partials/admin/footer-main.php'; ?>
           <!-- partial -->
         </div>
         <!-- main-panel ends -->
@@ -571,6 +571,6 @@
       <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
-    <?php include 'views/partials/admin/scripts.php' ?>
+    <?php include 'views/partials/admin/scripts-main.php' ?>
   </body>
 </html>
