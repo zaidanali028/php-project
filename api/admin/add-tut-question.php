@@ -1,13 +1,10 @@
 <?php 
 session_start();
 // start a session
-function pre_r($array){
-  echo '<pre>';
-  print_r($array);
-    echo '<pre>';
-}
 
-$mysqli=new mysqli('localhost','root','','learning_spy')  or die(mysqli_error($mysqli));
+// $mysqli=new mysqli('localhost','root','','learning_spy')  or die(mysqli_error($mysqli));
+include 'db-con.php' ;
+
 if(isset($_POST['sub-tut'])){
     $tut_title=$_POST['title'];
   $res=  $mysqli->query("INSERT INTO tut_table (tut_title)  VALUES('$tut_title') ") or

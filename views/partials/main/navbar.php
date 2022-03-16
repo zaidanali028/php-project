@@ -26,3 +26,5 @@
      <div class="line3"></div>
          </div>
 </nav>
+
+<script src="public/js/nav.js"></script>

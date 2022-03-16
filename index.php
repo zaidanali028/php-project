@@ -2,11 +2,11 @@
 
 // routing logic
 
-
+$tut_id=isset($_GET['tutorial-id'])?$_GET['tutorial-id']:"";
 
 $request = $_SERVER['REQUEST_URI'];
 $path = "/php-project";
-
+// echo $request;
 switch ($request) {
         // GET REQUESTS
     // index routes
@@ -25,7 +25,16 @@ switch ($request) {
      case  $path."/courses-list":
             require __DIR__ .  '/views/main/questions-list.php';
             break;
- 
+    case  $path."/tutorial-question?tutorial-id=".$tut_id:
+        require __DIR__ .  '/views/main/tutorial-question.php';
+        break;
+    
+        case  $path."/test_result":
+            require __DIR__ .  '/views/main/test_res.php';
+            break;
+        
+    
+
        
     //    admin routes
         case  $path."/admin":
@@ -46,7 +55,7 @@ switch ($request) {
 
 
 
-            // POST REQUESTS
+            // POST REQUESTS-ADMIN
             case  $path."/admin/add-tut":
                 // static css assets aint working here 
                     require __DIR__ .  '/api/admin/add-tut-question.php';
@@ -59,6 +68,12 @@ switch ($request) {
                         // static css assets aint working here 
                             require __DIR__ .  '/api/admin/add-question-ans.php';
                         break;
+            
+            // POST REQUESTS-GENERAL
+            
+                        case  $path."/validate-answers":
+                require __DIR__ .  '/api/main/validate-answers.php';
+                break;
   
 //   anythign else's routes
             default:

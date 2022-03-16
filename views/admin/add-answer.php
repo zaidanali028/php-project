@@ -4,7 +4,8 @@
 <!-- header here -->
 <?php include 'views/partials/admin/header.php' ?>
 <?php
-$mysqli = new mysqli('localhost', 'root', '', 'learning_spy')  or die(mysqli_error($mysqli));
+ include 'db-con.php' ;
+
 $res =  $mysqli->query("SELECT * FROM  tut_questions ORDER BY  main_question ASC ") or
   die($mysqli->error);
 

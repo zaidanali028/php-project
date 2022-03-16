@@ -11,11 +11,12 @@ nav{
     justify-content: space-around;
     align-items: center;
     min-height: 8vh;
-    background-color:purple ;
+    background-color:greenyellow ;
+    z-index: -1;
 }
 
 .logo{
-    color: rgba(255, 255, 255, 0.77);
+    color: black;
     text-transform: uppercase;
     letter-spacing: 5px;
     font-size: 22px;
@@ -28,7 +29,7 @@ nav{
 }
 
 .nav-links a{
-    color: rgba(255, 255, 255, 0.77);
+    color: black;
     text-decoration: none;
     letter-spacing: 3px;
     font-weight: bold;
@@ -49,7 +50,7 @@ nav{
    width:25px;
    height: 3px;
    margin: 5px;
-   background-color: rgba(255, 255, 255, 0.77);
+   background-color: black;
    transition: all 0.3s ease;
  
 }
@@ -73,7 +74,7 @@ body{
        right: 0px;
        height: 92vh;
        top: 8vh;
-       background-color: purple;
+       background-color: greenyellow;
        display: flex;
        flex-direction: column;
        align-items: center;

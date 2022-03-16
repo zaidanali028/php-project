@@ -68,7 +68,8 @@
 
         
                 <?php
-                $mysqli = new mysqli('localhost', 'root', '', 'learning_spy')  or die(mysqli_error($mysqli));
+                 include 'db-con.php' ;
+
 
                 ?>
                 <!-- <form class="forms-sample"> -->

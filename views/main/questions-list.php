@@ -14,7 +14,12 @@ $res =  $mysqli->query("SELECT * FROM  tut_table ") or
 <body>
 <!-- Nav partial -->
 <?php include 'views/partials/main/navbar.php' ?>
-
+<script>
+  function redirectToQuestions(tut_id){
+    // alert (tut_id)
+    window.location.href="./tutorial-question?tutorial-id="+tut_id
+  }
+  </script>
 
 <div class="container">
     <div class="row">
@@ -27,7 +32,7 @@ $res =  $mysqli->query("SELECT * FROM  tut_table ") or
     <div class="col-md-12">
 
 <div class="card">
-<div class="btn  mt-4 " style="color:white;background-color: purple;"><?=$row['tut_title']?> Questions</div>
+<div onclick="redirectToQuestions(<?=$row['tut_id']?> )" class="btn  mt-4 " style="color:white;background-color: greenyellow;color:black"><?=$row['tut_title']?> Questions</div>
 
 </div>              
          </div>

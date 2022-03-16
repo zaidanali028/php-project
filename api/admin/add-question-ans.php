@@ -8,9 +8,12 @@ if (isset($_POST['sub-ans'])) {
 
     $is_correct = $_POST['is_correct'] == "true" ? 1 : 0;
 
-    $res =  $mysqli->query("SELECT * FROM answers where tut_question_id='$question_id'  ") or
+    $res =  $mysqli->query("SELECT COUNT(*) FROM answers WHERE tut_question_id='$question_id'  ") or
         die($mysqli->error);
-    $answer_count = count($res->fetch_assoc());
+    $answer_count =$res->fetch_assoc()['COUNT(*)'];
+//     $question_count =  $mysqli->query("SELECT COUNT(*) FROM  tut_questions WHERE tut_id='$tutId' ") or
+//     die($mysqli->error);
+// $qCount = $question_count->fetch_assoc()['COUNT(*)']
     if ($answer_count >= 4) {
         $_SESSION['message'] = "Only 4(four) answers are allowed per question,kindly delete some for this question inorder to add a new question";
         $_SESSION['msg_type'] = "danger";
