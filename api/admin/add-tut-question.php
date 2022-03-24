@@ -17,8 +17,10 @@ if($res==1){
 
 
     
-$_SESSION['message']="A tutorial witht the name  $tut_title has been successfully created";
 $_SESSION['msg_type']="success";
+$_SESSION['msg']="A tutorial witht the name $tut_title   has been successfully created";
+
+// echo $_SESSION['msg'];
 
 // redirection after successful tutorial registeration
 header("location: ./add");

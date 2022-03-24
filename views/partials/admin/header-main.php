@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="public/admin/vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="public/admin/vendors/typicons.font/font/typicons.ttf">
     <link rel="stylesheet" href="public/admin/vendors/mdi/css/materialdesignicons.min.css">
-    <!-- ../../vendors/mdi/css/materialdesignicons.min.css -->
+    <link rel="stylesheet" href="public/css/toastr.min.css">
+
     
     
     <!-- endinject --> 

@@ -8,8 +8,11 @@
     <link rel="stylesheet" href="../public/admin/vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="../public/admin/vendors/typicons.font/font/typicons.ttf">
     <link rel="stylesheet" href="../public/admin/vendors/mdi/css/materialdesignicons.min.css">
-    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="../public/css/toastr.css">
+
+    
     <!-- ../../vendors/mdi/css/materialdesignicons.min.css -->
     
     

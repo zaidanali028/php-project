@@ -16,4 +16,7 @@
     <!-- End plugin js for this page -->
     <!-- Custom js for this page-->
     <script src="public/admin/js/dashboard.js"></script>
-    <!-- End custom js for this page-->
+    <script src="public/admin/js/toastr.min.js"></script>
+    <script src="public/admin/js/jquery.min.js"></script>
+
+  

@@ -58,6 +58,8 @@ $res =  $mysqli->query("SELECT * FROM  tut_table ") or
 
 
         <div class="content-wrapper">
+        <div class="col-lg-12 grid-margin stretch-card">
+
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Add Definitions To Your Tutorials</h4>
@@ -90,17 +92,83 @@ $res =  $mysqli->query("SELECT * FROM  tut_table ") or
                 <button class="btn btn-light">Cancel</button>
               </form>
             </div>
+            
           </div>
         </div>
+          <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Current Questions</h4>
+                  <p class="card-description">
+                    Edit or <code>Delete</code> Questions from this table
+                  </p>
+                  <div class="table-responsive pt-3">
+                    <table class="table table-dark">
+                      <thead>
+                        <tr>
+                          <th>
+                            #
+                          </th>
+                          <th>
+                           Question
+                          </th>
+                          <th>
+                            Edit
+                          </th>
+                          <th>
+                            Delete
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <?php 
+                   $res=   $mysqli->query('SELECT * FROM tut_questions');
+                   while ($row=$res->fetch_assoc()):?>
+                            <?php $qst_id=$row['tut_question_id'];?>
+
+                      <tr>
+                          <td>
+                           <?=$qst_id?>
+                          </td>
+                          <td>
+                          <?=$row['main_question']?>
+
+                          </td>
+                          <td>
+                          <a href="<?="./edit-tut?q_id=$qst_id"?>" class="btn btn-warning">Edit</a>
+                          </td>
+                          <td>
+                          <a href="<?="./delete-tut?q_id=$qst_id"?>" class="btn btn-danger">Delete</a>
+
+                          </td>
+                        </tr>
+                      <?php endwhile?>
+                       
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+         
+        </div>
+        </div>
+        
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
-        <?php include 'views/partials/admin/footer.php' ?>
 
         <!-- partial -->
+        
       </div>
+      
       <!-- main-panel ends -->
+      
     </div>
     <!-- page-body-wrapper ends -->
+    
+    <?php include 'views/partials/admin/footer.php' ?>
+
   </div>
   <!-- container-scroller -->
   <?php include 'views/partials/admin/scripts.php' ?>

@@ -3,6 +3,8 @@
 // routing logic
 
 $tut_id=isset($_GET['tutorial-id'])?$_GET['tutorial-id']:"";
+$qst_id=isset($_GET['qst_id'])?$_GET['qst_id']:"";
+
 
 $request = $_SERVER['REQUEST_URI'];
 $path = "/php-project";
@@ -68,6 +70,11 @@ switch ($request) {
                         // static css assets aint working here 
                             require __DIR__ .  '/api/admin/add-question-ans.php';
                         break;
+
+                        case  $path."/delete-tut?q_id=".$qst_id:
+                            require __DIR__ .  '/api/main/delete.php';
+                            break;
+                            // /delete?q_id=$qst_id
             
             // POST REQUESTS-GENERAL
             

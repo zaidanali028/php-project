@@ -263,10 +263,10 @@ session_start();
                     <div class="pt-4">
                         <?php while ($row = $re->fetch_assoc()) : ?>
                             <?php if ($row['answer_txt'] == $response["selected_ans"]) { ?>
-                                <label class="options"><?= $row['answer_txt'] ?> <input type="radio" checked name="<?= "ans$index" ?>" value='<?= $row['answer_txt'] ?>'> <span class="checkmark"></span> <?= $response["is_correct"] == 1 ? "✔️" : "❌" ?></label>
+                                <label class="options"><?= $row['answer_txt'] ?> <input type="radio" disabled checked name="<?= "ans$index" ?>" value='<?= $row['answer_txt'] ?>'> <span class="checkmark"></span> <?= $response["is_correct"] == 1 ? "✔️" : "❌" ?></label>
 
                             <?php     } else { ?>
-                                <label class="options"><?= $row['answer_txt'] ?> <input type="radio" name="<?= "ans$index" ?>" value='<?= $row['answer_txt'] ?>'> <span class="checkmark"></span> </label>
+                                <label class="options"><?= $row['answer_txt'] ?> <input type="radio" disabled name="<?= "ans$index" ?>" value='<?= $row['answer_txt'] ?>'> <span class="checkmark"></span> </label>
                             <?php } ?>
                         <?php endwhile ?>
 
