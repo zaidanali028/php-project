@@ -3,13 +3,25 @@
 
 <!-- header here -->
 <?php include 'views/partials/admin/header.php' ?>
+<?php
+ include 'db-con.php' ;
 
+$res =  $mysqli->query("SELECT * FROM  tut_table ") or
+  die($mysqli->error);
+  $qst_id=isset($_GET['q_id'])?$_GET['q_id']:"";
+
+  
+$qst_data =  $mysqli->query("SELECT * FROM  tut_questions WHERE tut_question_id='$qst_id' ") or
+die($mysqli->error);
+$qst_data=$qst_data->fetch_assoc();
+
+
+?>
 
 <body>
 
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
-    <?php session_start(); ?>
     <?php include 'views/partials/admin/navbar.php' ?>
 
 
@@ -50,58 +62,47 @@
       <!-- partial -->
       <div class="main-panel">
 
-      
+
         <div class="content-wrapper">
-     
-    
+        <div class="col-lg-12 grid-margin stretch-card">
 
-     
-      
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Edit  Definitions To Your Tutorials</h4>
+              <p class="card-description">
 
+              </p>
+              <form action="./edit-qst" method="POST" enctype="multipart/form-data">
 
-   
-          
-          <div class="col-12 grid-margin stretch-card">
-            <div class="card">
-            <?php if(isset($_SESSION['msg'])): ?>
-   
-   <div class="alert alert-<?= $_SESSION['msg_type']?> mt-3"><button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
- 
- 
-  <?php echo $_SESSION['msg'];?>
-</div>
-<!-- <?php  unset   ($_SESSION['msg']);?> -->
+                <div class="form-group">
+                  <label for="exampleInputName1">Main Question</label>
+                  <input type="text" name="main-question" value="<?=$qst_data['main_question'] ?>" class="form-control" id="exampleInputName1" placeholder="Java -1">
+                  <input type="hidden" name="qst_id" value="<?=$qst_data['tut_question_id'] ?>" >
+                  
+                </div>
+               
+                <div class="form-group">
+                  <div class="form-group">
 
+                    <label for="exampleFormControlSelect1">Select The Associated Tutorial</label>
+                    <select class="form-control form-control-lg" id="exampleFormControlSelect1" name='tut-id'>
+<?php        while($row=$res->fetch_assoc()):?>
+                  <option value="<?=$row['tut_id']?>"><?php echo $row['tut_title'];?> </option>
+                <?php endwhile ?>
 
-   <?php endif ?>
-              <div class="card-body">
-                
-                <h4 class="card-title">Add A Tutorial Name To The System</h4>
-                <p class="card-description">
-                 This helps identify each course uniquely from the others
-                </p>
-
-        
-                <?php
-                 include 'db-con.php' ;
+?>
 
 
-                ?>
-                <!-- <form class="forms-sample"> -->
-                  <form action="./add-tut" method="POST">
-                    <div class="form-group">
-                      <label for="exampleInputName1">Tutorial Title</label>
-                      <input type="text" name="title" class="form-control" id="exampleInputName1" placeholder="Programming with PHP">
-                    </div>
-
-                    <button name='sub-tut' type="submit" class="btn btn-primary mr-2">Submit</button>
-                    <button class="btn btn-light">Cancel</button>
-
-                  </form>
-                </form>
-              </div>
+                    </select>
+                  </div>
+                </div>
+                <button type="submit" name="sub-spec" class="btn btn-primary mr-2">Submit</button>
+                <button class="btn btn-light">Cancel</button>
+              </form>
             </div>
+            
           </div>
+        </div>
           <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
@@ -117,7 +118,7 @@
                             #
                           </th>
                           <th>
-                           Tutorial Title(s)
+                           Question
                           </th>
                           <th>
                             Edit
@@ -129,23 +130,23 @@
                       </thead>
                       <tbody>
                       <?php 
-                   $res=   $mysqli->query('SELECT * FROM tut_table');
+                   $res=   $mysqli->query('SELECT * FROM tut_questions ORDER BY main_question DESC;');
                    while ($row=$res->fetch_assoc()):?>
-                            <?php $qst_id=$row['tut_id'];?>
+                            <?php $qst_id=$row['tut_question_id'];?>
 
                       <tr>
                           <td>
                            <?=$qst_id?>
                           </td>
                           <td>
-                          <?=$row['tut_title']?>
+                          <?=$row['main_question']?>
 
                           </td>
                           <td>
-                          <a href="<?="./edit-tut?q_id=$qst_id"?>" class="btn btn-warning">Edit</a>
+                          <a href="<?="./edit-qst?q_id=$qst_id"?>" class="btn btn-warning">Edit</a>
                           </td>
                           <td>
-                          <a href="<?="./delete-tut?q_id=$qst_id"?>" class="btn btn-danger">Delete</a>
+                          <a href="<?="./delete-qst?q_id=$qst_id"?>" class="btn btn-danger">Delete</a>
 
                           </td>
                         </tr>
@@ -160,19 +161,23 @@
           
          
         </div>
+        </div>
+        
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
 
         <!-- partial -->
+        
       </div>
+      
       <!-- main-panel ends -->
+      
     </div>
     <!-- page-body-wrapper ends -->
+    
     <?php include 'views/partials/admin/footer.php' ?>
 
   </div>
-
-  
   <!-- container-scroller -->
   <?php include 'views/partials/admin/scripts.php' ?>
 

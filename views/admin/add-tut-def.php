@@ -4,7 +4,8 @@
 <!-- header here -->
 <?php include 'views/partials/admin/header.php' ?>
 <?php
- include 'db-con.php' ;
+session_start(); 
+include 'db-con.php' ;
 
 $res =  $mysqli->query("SELECT * FROM  tut_table ") or
   die($mysqli->error);
@@ -61,6 +62,17 @@ $res =  $mysqli->query("SELECT * FROM  tut_table ") or
         <div class="col-lg-12 grid-margin stretch-card">
 
           <div class="card">
+          <?php if(isset($_SESSION['msg'])): ?>
+   
+   <div class="alert alert-<?= $_SESSION['msg_type']?> mt-3"><button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+ 
+ 
+  <?php echo $_SESSION['msg'];?>
+</div>
+<!-- <?php  unset   ($_SESSION['msg']);?> -->
+
+
+   <?php endif ?>
             <div class="card-body">
               <h4 class="card-title">Add Definitions To Your Tutorials</h4>
               <p class="card-description">
@@ -122,7 +134,7 @@ $res =  $mysqli->query("SELECT * FROM  tut_table ") or
                       </thead>
                       <tbody>
                       <?php 
-                   $res=   $mysqli->query('SELECT * FROM tut_questions');
+                   $res=   $mysqli->query('SELECT * FROM tut_questions ORDER BY main_question DESC;');
                    while ($row=$res->fetch_assoc()):?>
                             <?php $qst_id=$row['tut_question_id'];?>
 
@@ -135,10 +147,10 @@ $res =  $mysqli->query("SELECT * FROM  tut_table ") or
 
                           </td>
                           <td>
-                          <a href="<?="./edit-tut?q_id=$qst_id"?>" class="btn btn-warning">Edit</a>
+                          <a href="<?="./edit-qst?q_id=$qst_id"?>" class="btn btn-warning">Edit</a>
                           </td>
                           <td>
-                          <a href="<?="./delete-tut?q_id=$qst_id"?>" class="btn btn-danger">Delete</a>
+                          <a href="<?="./delete-qst?q_id=$qst_id"?>" class="btn btn-danger">Delete</a>
 
                           </td>
                         </tr>

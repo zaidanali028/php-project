@@ -3,7 +3,7 @@
           <li class="nav-item">
             <div class="d-flex sidebar-profile">
               <div class="sidebar-profile-image">
-                <img src="public/admin/images/faces/face29.png" alt="image">
+                <img src="../public/admin/images/faces/face29.png" alt="image">
                 <span class="sidebar-status-indicator"></span>
               </div>
               <div class="sidebar-profile-name">
@@ -30,14 +30,14 @@
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <i class="typcn typcn-briefcase menu-icon"></i>
-              <span class="menu-title">UI Elements</span>
+              <span class="menu-title">Main</span>
               <i class="typcn typcn-chevron-right menu-arrow"></i>
             </a>
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="admin/add">Add A Tutorial</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/php-project/admin/add">Add A Tutorial Name</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/php-project/admin/add-tut-data">Add Tutorial Questions</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/php-project/admin/add-answer">Add An Answer</a></li>
               </ul>
             </div>
           </li>

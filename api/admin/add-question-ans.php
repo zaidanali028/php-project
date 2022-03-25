@@ -15,14 +15,21 @@ if (isset($_POST['sub-ans'])) {
 //     die($mysqli->error);
 // $qCount = $question_count->fetch_assoc()['COUNT(*)']
     if ($answer_count >= 4) {
-        $_SESSION['message'] = "Only 4(four) answers are allowed per question,kindly delete some for this question inorder to add a new question";
+        $_SESSION['msg'] = "Only 4(four) answers are allowed per question,kindly delete some for this question inorder to add a new question";
         $_SESSION['msg_type'] = "danger";
+  header("location: ./add-answer");
+
     } else {
         $res =  $mysqli->query("INSERT INTO answers (tut_question_id,answer_txt,is_correct)  VALUES('$question_id','$answer_txt','$is_correct') ") or
             die($mysqli->error);
             if($res==1){
-                $_SESSION['message'] = "A new answer was added to the question ";
+                $_SESSION['msg'] = "$answer_txt is added to the question with id $question_id ";
                 $_SESSION['msg_type'] = "success";
+
+  header("location: ./add-answer");
+
+
+
             }
     }
 

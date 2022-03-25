@@ -10,7 +10,9 @@
 
 $res =  $mysqli->query("SELECT * FROM  tut_questions ORDER BY  main_question ASC ") or
   die($mysqli->error);
-
+  $ans =  $mysqli->query("SELECT * FROM  answers") or
+  die($mysqli->error);
+  
 
 ?>
 
@@ -60,8 +62,7 @@ $res =  $mysqli->query("SELECT * FROM  tut_questions ORDER BY  main_question ASC
 
 
         <div class="content-wrapper">
-          <div class="card">
-          <?php if(isset($_SESSION['msg'])): ?>
+        <?php if(isset($_SESSION['msg'])): ?>
    
    <div class="alert alert-<?= $_SESSION['msg_type']?> mt-3"><button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
  
@@ -72,17 +73,16 @@ $res =  $mysqli->query("SELECT * FROM  tut_questions ORDER BY  main_question ASC
 
 
    <?php endif ?>
+          <div class="card">
+        
             <div class="card-body">
-              <h4 class="card-title">Add Definitions To Your Tutorials</h4>
+              <h4 class="card-title">Modify Answers For Specific Questions</h4>
               <p class="card-description">
 
               </p>
-              <form action="./add-question-ans" method="POST" >
+              <form action="./get-qst-ans" method="POST" >
 
-                <div class="form-group">
-                  <label for="exampleInputName1">Answer To Add(MCQ)</label>
-                  <input type="text" name="answer_txt" class="form-control" id="exampleInputName1" placeholder="A .Java is awesome">
-                </div>
+               
                
                 <div class="form-group">
                   <div class="form-group">
@@ -102,7 +102,42 @@ $res =  $mysqli->query("SELECT * FROM  tut_questions ORDER BY  main_question ASC
                   </div>
 
                 </div>
-                <div class="form-group">
+             
+                <button type="submit" name="sub-ans" class="btn btn-primary mr-2">Submit</button>
+                <button class="btn btn-light">Cancel</button>
+              </form>
+            </div>
+          </div>
+          <br>
+          <div class="card">
+                      <div class="card-body">
+              <h4 class="card-title">Change an Option's correctness</h4>
+              <p class="card-description">
+
+              </p>
+              <form action="./opt-update" method="POST">
+
+               
+               
+              <div class="form-group">
+
+<label for="exampleFormControlSelect1">Select The Associated Question</label>
+<select class="form-control form-control-lg" id="exampleFormControlSelect1" name="answer_id">
+<?php        while($row=$ans->fetch_assoc()):?>
+                  <option value="<?=$row['answer_id']?>"><?php echo $row['answer_txt'];?> </option>
+                
+
+                <?php endwhile ?>
+
+
+
+
+
+
+
+</select>
+</div>
+<div class="form-group ">
                     <div class="row ml-2">
                     <label for="">Is the answer correct?</label>
 
@@ -118,8 +153,16 @@ $res =  $mysqli->query("SELECT * FROM  tut_questions ORDER BY  main_question ASC
                       </label>
                     </div>
                 </div>
-                <button type="submit" name="sub-ans" class="btn btn-primary mr-2">Submit</button>
+                <button type="submit" name="sub-opt" class="btn btn-primary mr-2">Submit</button>
                 <button class="btn btn-light">Cancel</button>
+                </div>
+ 
+                  </div>
+                  
+                 
+                
+             
+              
               </form>
             </div>
           </div>

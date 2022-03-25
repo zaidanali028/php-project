@@ -6,9 +6,15 @@
 <?php session_start(); ?>
 
 <?php
- include 'db-con.php' ;
+include 'db-con.php';
 
-$res =  $mysqli->query("SELECT * FROM  tut_questions ORDER BY  main_question ASC ") or
+$qst_id = isset($_POST['question_id']) ? $_POST['question_id'] : "";
+$res =  $mysqli->query("SELECT * FROM  tut_questions    WHERE tut_question_id='$qst_id'   ") or
+  die($mysqli->error);
+
+  $question=$res->fetch_assoc()['main_question'];
+
+$res =  $mysqli->query("SELECT * FROM  answers    WHERE tut_question_id='$qst_id'   ") or
   die($mysqli->error);
 
 
@@ -61,63 +67,46 @@ $res =  $mysqli->query("SELECT * FROM  tut_questions ORDER BY  main_question ASC
 
         <div class="content-wrapper">
           <div class="card">
-          <?php if(isset($_SESSION['msg'])): ?>
-   
-   <div class="alert alert-<?= $_SESSION['msg_type']?> mt-3"><button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
- 
- 
-  <?php echo $_SESSION['msg'];?>
-</div>
-<!-- <?php  unset   ($_SESSION['msg']);?> -->
+            <?php if (isset($_SESSION['msg'])) : ?>
+
+              <div class="alert alert-<?= $_SESSION['msg_type'] ?> mt-3"><button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
 
 
-   <?php endif ?>
+                <?php echo $_SESSION['msg']; ?>
+              </div>
+              <!-- <?php unset($_SESSION['msg']); ?> -->
+
+
+            <?php endif ?>
             <div class="card-body">
-              <h4 class="card-title">Add Definitions To Your Tutorials</h4>
+              <h4 class="card-title">Modify Answer(s) For [<?=$question?>]</h4>
               <p class="card-description">
 
               </p>
-              <form action="./add-question-ans" method="POST" >
+              <form action="./update-answers" method="POST">
+                <input type="hidden" name="qst" value="<?=$qst_id?>">
+               <?php $index = 0;?>
 
-                <div class="form-group">
-                  <label for="exampleInputName1">Answer To Add(MCQ)</label>
-                  <input type="text" name="answer_txt" class="form-control" id="exampleInputName1" placeholder="A .Java is awesome">
-                </div>
-               
-                <div class="form-group">
+                <?php while($row=$res->fetch_assoc()): ?>
                   <div class="form-group">
 
-                    <label for="exampleFormControlSelect1">Select The Associated Question</label>
-                    <select class="form-control form-control-lg" id="exampleFormControlSelect1" name='question_id'>
-<?php        while($row=$res->fetch_assoc()):?>
-                  <option value="<?=$row['tut_question_id']?>"><?php echo $row['main_question'];?> </option>
-                
+<label for="exampleFormControlSelect1">Select The Associated Question</label>
+<div class="form-group">
+  <label for="exampleInputName1"><?=$row['answer_txt']?></label>
+  <input type="text" class="form-control" id="exampleInputName1" placeholder="<?=$row['answer_txt']?>" name="<?=$row['answer_txt']?>" value="<?=$row['answer_txt']?>">
+  <input type="hidden" class="form-control" id="exampleInputName1" placeholder="<?=$row['answer_id']?>" name="<?=$row['answer_id']?>" value="<?=$row['answer_id']?>">
 
-                <?php endwhile ?>
+</div>
 
-?>
+<?php $index ++;?>
+               
+<?php endwhile ?>
 
 
-                    </select>
-                  </div>
 
-                </div>
-                <div class="form-group">
-                    <div class="row ml-2">
-                    <label for="">Is the answer correct?</label>
 
-                    </div>
-                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                      <label class="btn btn-outline-success">
-                        <input type="radio" name="is_correct" value="true">
-                        Yes
-                      </label>
-                      <label class="btn btn-outline-success">
-                        <input type="radio" name="is_correct" value="false">
-                        Wrong Answer
-                      </label>
-                    </div>
-                </div>
+            
+
                 <button type="submit" name="sub-ans" class="btn btn-primary mr-2">Submit</button>
                 <button class="btn btn-light">Cancel</button>
               </form>

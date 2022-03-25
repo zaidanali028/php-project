@@ -30,7 +30,7 @@
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <i class="typcn typcn-briefcase menu-icon"></i>
-              <span class="menu-title">UI Elements</span>
+              <span class="menu-title">Main</span>
               <i class="typcn typcn-chevron-right menu-arrow"></i>
             </a>
             <div class="collapse" id="ui-basic">
@@ -38,6 +38,8 @@
                 <li class="nav-item"> <a class="nav-link" href="/php-project/admin/add">Add A Tutorial Name</a></li>
                 <li class="nav-item"> <a class="nav-link" href="/php-project/admin/add-tut-data">Add Tutorial Questions</a></li>
                 <li class="nav-item"> <a class="nav-link" href="/php-project/admin/add-answer">Add An Answer</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/php-project/admin/mod-ans">Modify Answers</a></li>
+
               </ul>
             </div>
           </li>
