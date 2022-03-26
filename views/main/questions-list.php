@@ -12,8 +12,11 @@ $res =  $mysqli->query("SELECT * FROM  tut_table ") or
 ?>
 
 <body>
-<!-- Nav partial -->
+
+<div class="nav-content">
 <?php include 'views/partials/main/navbar.php' ?>
+
+</div>
 <script>
   function redirectToQuestions(tut_id){
     // alert (tut_id)
@@ -24,7 +27,7 @@ $res =  $mysqli->query("SELECT * FROM  tut_table ") or
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-        <h1>All Tutotial Questions</h1>
+        <h6>All Tutotral Questions</h1>
      </div>
      <div class="row">
         
@@ -40,9 +43,11 @@ $res =  $mysqli->query("SELECT * FROM  tut_table ") or
                 <?php endwhile ?>
      </div>
     </div>
-<!-- </div> -->
+</div>
 
 <script src="public/js/nav.js"></script>
+<?php include 'views/partials/main/footer.php' ?>
+
 </body>
 
 </html

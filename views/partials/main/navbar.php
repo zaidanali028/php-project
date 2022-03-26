@@ -5,7 +5,7 @@
 
     <ul class="nav-links">
         <li>
-            <a href="#">
+            <a href="./">
                 Tutorails
             </a>
         </li>

@@ -17,19 +17,22 @@
             font-family: 'Poppins', sans-serif
         }
 
-        body {
-            background: white;
-        }
+   
 
+      
+        
         .wrapper {
             max-width: 600px;
             margin: 80px auto 50px;
             padding: 30px;
             border-radius: 20px;
-            background: greenyellow;
+            background: rgb(63, 139, 139);
+            border: 1px solid black;
             position: relative;
             min-height: 400px;
-            overflow: hidden
+            overflow: hidden;
+  box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.2);
+
         }
 
         .wrapper .wrap {
@@ -123,99 +126,16 @@
             color: #fff
         }
 
-        .fa-arrow-right,
-        .fa-arrow-left {
-            transition: 0.2s ease-in all
-        }
-
-        .btn.btn-primary:hover .fa-arrow-right {
-            transform: translate(8px)
-        }
-
-        .btn.btn-primary:hover .fa-arrow-left {
-            transform: translate(-8px)
-        }
-
-        @media(max-width: 767px) {
-            .wrapper {
-                margin: 30px 10px;
-                height: 420px
-            }
-
-            .wrapper .wrap {
-                width: 280px;
-                left: 15px
-            }
-        }
-
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 28px;
-            background-color: inherit
-        }
-
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0
-        }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            -webkit-transition: .4s;
-            transition: .4s
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 20px;
-            width: 20px;
-            left: 4px;
-            bottom: 4px;
-            background-color: #fff;
-            -webkit-transition: .4s;
-            transition: .4s
-        }
-
-        input:checked+.slider {
-            background-color: #000
-        }
-
-        input:focus+.slider {
-            box-shadow: 0 0 1px #2196F3
-        }
-
-        input:checked+.slider:before {
-            transform: translateX(30px);
-            background-color: #fff
-        }
-
-        .slider.round {
-            border-radius: 34px
-        }
-
-        .slider.round:before {
-            border-radius: 50%
-        }
-
-        .dark-theme {
-            background-color: #222
-        }
+     
     </style>
 
 </head>
 
 <body>
-    <?php include 'views/partials/main/navbar.php' ?>
+   <div class="nav-content">
+<?php include 'views/partials/main/navbar.php' ?>
+
+</div>
 
     <div class="container-fluid ">
 
@@ -251,8 +171,11 @@
            
 
 
+
            <form action ='./validate-answers' method='POST'>
-            <div class="wrapper">
+           <div class="wrap-main" style="z-index:-1">
+
+           <div class="wrapper" >
                 <div class="wrap" id="q1">
                     <div class="text-center pb-4">
                         <div class="h5 font-weight-bold"><span id="number"> </span><?= $index ?> of <?= $qCount ?></div>
@@ -268,6 +191,7 @@
                     </div>
                 </div>
             </div>
+           </div>
 
         <?php
             $index += 1;
@@ -293,10 +217,12 @@ if ($tut_id) {
     $res =  $mysqli->query("SELECT * FROM  tut_questions WHERE tut_id='$tut_id' ") or
         die($mysqli->error);
     while ($row = $res->fetch_assoc()) {
-        pre_r($row);
+     
     }
 };
 ?>
+
+<?php include 'views/partials/main/footer.php' ?>
 
 </body>
 

@@ -30,10 +30,13 @@ session_start();
             margin: 80px auto 50px;
             padding: 30px;
             border-radius: 20px;
-            background: greenyellow;
+            background: rgb(63, 139, 139);
+            border: 1px solid black;
             position: relative;
             min-height: 400px;
-            overflow: hidden
+            overflow: hidden;
+  box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.2);
+
         }
 
         .wrapper .wrap {
@@ -219,7 +222,10 @@ session_start();
 </head>
 
 <body>
-    <?php include 'views/partials/main/navbar.php' ?>
+<div class="nav-content">
+<?php include 'views/partials/main/navbar.php' ?>
+
+</div>
 
     <div class="container-fluid ">
 
@@ -253,7 +259,8 @@ session_start();
             $re =  $mysqli->query("SELECT * FROM  answers WHERE tut_question_id=$current_question_id") or
                 die($mysqli->error); ?>
 
-            <div class="wrapper">
+<div class="wrap-main" style="z-index:-1">
+<div class="wrapper">
                 <div class="wrap" id="q1">
                     <div class="text-center pb-4">
                         <div class="h5 font-weight-bold"><span id="number"> </span><?= $index ?> of <?= $qCount ?></div>
@@ -274,6 +281,7 @@ session_start();
                     </div>
                 </div>
             </div>
+</div>
 
         <?php
             $index += 1;
@@ -304,6 +312,8 @@ session_start();
     //}
     //};
     ?>
+
+<?php include 'views/partials/main/footer.php' ?>
 
 </body>
 
