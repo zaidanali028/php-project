@@ -1,4 +1,5 @@
 <script src="public/js/tut-responsive.js"></script>
+<script src="public/js/modal.js"></script>
 
 
 <footer>

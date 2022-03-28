@@ -12,7 +12,9 @@ $res =  $mysqli->query("SELECT * FROM  tut_table ") or
 ?>
 
 <body>
+<?php include  'views/partials/main/modal.php' ?>
 
+<div class="main-section">
 <div class="nav-content">
 <?php include 'views/partials/main/navbar.php' ?>
 
@@ -24,18 +26,15 @@ $res =  $mysqli->query("SELECT * FROM  tut_table ") or
   }
   </script>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-        <h6>All Tutotral Questions</h1>
-     </div>
+<div class="container  mt-5">
+    
      <div class="row">
         
 <?php        while($row=$res->fetch_assoc()):?>
     <div class="col-md-12">
 
-<div class="card">
-<div onclick="redirectToQuestions(<?=$row['tut_id']?> )" class="btn  mt-4 " style="color:white;background-color: greenyellow;color:black"><?=$row['tut_title']?> Questions</div>
+<div class="tut-intro mt-5">
+<div onclick="redirectToQuestions(<?=$row['tut_id']?> )" class="  mt-4 " >Click To View <?=$row['tut_title']?> Questions</div>
 
 </div>              
          </div>
@@ -44,10 +43,13 @@ $res =  $mysqli->query("SELECT * FROM  tut_table ") or
      </div>
     </div>
 </div>
-
-<script src="public/js/nav.js"></script>
+<div class="tut-footer" style=" transform:translateY(300px);">
 <?php include 'views/partials/main/footer.php' ?>
 
+</div>
+
+<script src="public/js/nav.js"></script>
+</div>
 </body>
 
 </html

@@ -222,6 +222,9 @@ session_start();
 </head>
 
 <body>
+<?php include  'views/partials/main/modal.php' ?>
+
+<div class="main-section">
 <div class="nav-content">
 <?php include 'views/partials/main/navbar.php' ?>
 
@@ -312,7 +315,7 @@ session_start();
     //}
     //};
     ?>
-
+</div>
 <?php include 'views/partials/main/footer.php' ?>
 
 </body>

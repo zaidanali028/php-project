@@ -132,6 +132,9 @@
 </head>
 
 <body>
+<?php include  'views/partials/main/modal.php' ?>
+
+<div class="main-section">
    <div class="nav-content">
 <?php include 'views/partials/main/navbar.php' ?>
 
@@ -172,12 +175,13 @@
 
 
 
-           <form action ='./validate-answers' method='POST'>
-           <div class="wrap-main" style="z-index:-1">
+          <div class="to-back-of-nav" >
+          <form action ='./validate-answers' method='POST'>
+           <div class="wrap-main" >
 
-           <div class="wrapper" >
-                <div class="wrap" id="q1">
-                    <div class="text-center pb-4">
+           <div class="wrapper"  >
+                <div class="wrap" id="q1" >
+                    <div class="text-center pb-4" >
                         <div class="h5 font-weight-bold"><span id="number"> </span><?= $index ?> of <?= $qCount ?></div>
                     </div>
                     <div class="h4 font-weight-bold"><?= $index ?>.  <?= $row['main_question'] ?> </div>
@@ -200,6 +204,7 @@
     <div class="col-md-12 d-flex justify-content-end">
         <button class="btn btn-primary align-center p-3">Submit For Assessment</div>
         </form>
+          </div>
 
     </div>
 </div>
@@ -221,7 +226,7 @@ if ($tut_id) {
     }
 };
 ?>
-
+</div>
 <?php include 'views/partials/main/footer.php' ?>
 
 </body>

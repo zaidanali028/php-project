@@ -15,7 +15,7 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="#" class="activ-modal">
                 Signin
             </a>
         </li>
