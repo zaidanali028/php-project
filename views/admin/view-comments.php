@@ -3,20 +3,13 @@
 
 <!-- header here -->
 <?php include 'views/partials/admin/header.php' ?>
-<?php
-session_start(); 
-include 'db-con.php' ;
 
-$tut_res =  $mysqli->query("SELECT * FROM  tut_table ") or
-  die($mysqli->error);
-
-
-?>
 
 <body>
 
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
+    <?php session_start(); ?>
     <?php include 'views/partials/admin/navbar.php' ?>
 
 
@@ -57,64 +50,41 @@ $tut_res =  $mysqli->query("SELECT * FROM  tut_table ") or
       <!-- partial -->
       <div class="main-panel">
 
-
+      
         <div class="content-wrapper">
-        <div class="col-lg-12 grid-margin stretch-card">
+     
+    
 
-          <div class="card">
-          <?php if(isset($_SESSION['msg'])): ?>
+     
+      
+
+
+   
+          
+          <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+            <?php if(isset($_SESSION['msg'])): ?>
    
    <div class="alert alert-<?= $_SESSION['msg_type']?> mt-3"><button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
  
  
   <?php echo $_SESSION['msg'];?>
 </div>
-<?php  unset   ($_SESSION['msg']);?>
+<!-- <?php  unset   ($_SESSION['msg']);?> -->
 
 
    <?php endif ?>
-            <div class="card-body">
-              <h4 class="card-title">Add Definitions To Your Tutorials</h4>
-              <p class="card-description">
-
-              </p>
-              <form action="./add-tut-spec" method="POST" enctype="multipart/form-data">
-
-                <div class="form-group">
-                  <label for="exampleInputName1">Main Question</label>
-                  <input type="text" name="main-question" class="form-control" id="exampleInputName1" placeholder="Java -1">
-                </div>
-               
-                <div class="form-group">
-                  <div class="form-group">
-
-                    <label for="exampleFormControlSelect1">Select The Associated Tutorial</label>
-                    <select class="form-control form-control-lg" id="exampleFormControlSelect1" name='tut-id'>
-<?php        while($row=$tut_res->fetch_assoc()):?>
-                  <option value="<?=$row['tut_id']?>"><?php echo $row['tut_title'];?> </option>
-                <?php endwhile ?>
-
-?>
-
-
-                    </select>
-                  </div>
-                </div>
-                <button type="submit" name="sub-spec" class="btn btn-primary mr-2">Submit</button>
-                <button class="btn btn-light">Cancel</button>
-              </form>
+           
             </div>
-            
           </div>
-        </div>
           <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Current Questions</h4>
+                  <h4 class="card-title">Current Comments</h4>
                   <p class="card-description">
                     Edit or <code>Delete</code> Questions from this table
                   </p>
-                  <div class="table-tut_responsive pt-3">
+                  <div class="table-responsive pt-3">
                     <table class="table table-dark">
                       <thead>
                         <tr>
@@ -122,35 +92,35 @@ $tut_res =  $mysqli->query("SELECT * FROM  tut_table ") or
                             #
                           </th>
                           <th>
-                           Question
+                           Comments
                           </th>
                           <th>
-                            Edit
+                            Approval Status
                           </th>
                           <th>
-                            Delete
+                            Approval Action
                           </th>
                         </tr>
                       </thead>
                       <tbody>
                       <?php 
-                   $tut_res=   $mysqli->query('SELECT * FROM tut_questions ORDER BY main_question DESC;');
-                   while ($row=$tut_res->fetch_assoc()):?>
-                            <?php $qst_id=$row['tut_question_id'];?>
+                   $res=   $mysqli->query('SELECT * FROM comments');
+                   while ($row=$res->fetch_assoc()):?>
+                            <?php $cmt_id=$row['comment_id'];?>
 
                       <tr>
                           <td>
-                           <?=$qst_id?>
+                           <?=$cmt_id?>
                           </td>
                           <td>
-                          <?=$row['main_question']?>
+                          <?=$row['message']?>
 
                           </td>
                           <td>
-                          <a href="<?="./edit-qst?q_id=$qst_id"?>" class="btn btn-warning">Edit</a>
+                          <a href="" class="btn disabled btn-warning"><?=$row['is_pending']==1?"PENDING APPROVAL":"APPROVED"?></a>
                           </td>
                           <td>
-                          <a href="<?="./delete-qst?q_id=$qst_id"?>" class="btn btn-danger">Delete</a>
+                          <a href="<?="./change-cmt-state?cmt_id=$cmt_id"?>" class="btn btn-primary"><?=$row['is_pending']==1?"CLICK TO APPROVE":"CLICK TO DISAPPROVE"?></a>
 
                           </td>
                         </tr>
@@ -165,23 +135,19 @@ $tut_res =  $mysqli->query("SELECT * FROM  tut_table ") or
           
          
         </div>
-        </div>
-        
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
 
         <!-- partial -->
-        
       </div>
-      
       <!-- main-panel ends -->
-      
     </div>
     <!-- page-body-wrapper ends -->
-    
     <?php include 'views/partials/admin/footer.php' ?>
 
   </div>
+
+  
   <!-- container-scroller -->
   <?php include 'views/partials/admin/scripts.php' ?>
 

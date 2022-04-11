@@ -1,3 +1,4 @@
+<script src="public/js/bootstrap.min.js"></script>
 <script src="public/js/tut-responsive.js"></script>
 <script src="public/js/modal.js"></script>
 
@@ -9,12 +10,14 @@
 </div>
 
 <ul class="socials">
-    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+<li><a href="#"><i class="fab fa-facebook"></i></a></li>
     <li><a href="#"><i class="fab fa-twitter"></i></a></li>
     <li><a href="#"><i class="fab fa-google-plus"></i></a></li>
     <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-    <li><a href="#"><i class="fab fa-linkedin-square"></i></a></li>
+    <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
  </ul>
+
+ 
 </footer>
 
 

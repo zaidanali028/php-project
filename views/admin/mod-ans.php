@@ -7,9 +7,13 @@
 
 <?php
  include 'db-con.php' ;
+ $tut_id=$_POST['tut-id'];
 
-$res =  $mysqli->query("SELECT * FROM  tut_questions ORDER BY  main_question ASC ") or
+
+$questions =  $mysqli->query("SELECT * FROM  tut_questions WHERE tut_id='$tut_id' ORDER BY  main_question DESC ") or
   die($mysqli->error);
+
+   
   $ans =  $mysqli->query("SELECT * FROM  answers") or
   die($mysqli->error);
   
@@ -89,7 +93,7 @@ $res =  $mysqli->query("SELECT * FROM  tut_questions ORDER BY  main_question ASC
 
                     <label for="exampleFormControlSelect1">Select The Associated Question</label>
                     <select class="form-control form-control-lg" id="exampleFormControlSelect1" name='question_id'>
-<?php        while($row=$res->fetch_assoc()):?>
+<?php        while($row=$questions->fetch_assoc()):?>
                   <option value="<?=$row['tut_question_id']?>"><?php echo $row['main_question'];?> </option>
                 
 

@@ -3,18 +3,11 @@
 
 <!-- header here -->
 <?php include 'views/partials/admin/header.php' ?>
-<?php session_start(); ?>
-
 <?php
+session_start();
 include 'db-con.php';
 
-$qst_id = isset($_POST['question_id']) ? $_POST['question_id'] : "";
-$ans_4_question =  $mysqli->query("SELECT * FROM  tut_questions    WHERE tut_question_id='$qst_id'   ") or
-  die($mysqli->error);
-
-  $question=$ans_4_question->fetch_assoc()['main_question'];
-
-$ans_4_question =  $mysqli->query("SELECT * FROM  answers    WHERE tut_question_id='$qst_id'   ") or
+$tut_res =  $mysqli->query("SELECT * FROM  tut_table ") or
   die($mysqli->error);
 
 
@@ -66,63 +59,68 @@ $ans_4_question =  $mysqli->query("SELECT * FROM  answers    WHERE tut_question_
 
 
         <div class="content-wrapper">
-          <div class="card">
-            <?php if (isset($_SESSION['msg'])) : ?>
+          <div class="col-lg-12 grid-margin stretch-card">
 
-              <div class="alert alert-<?= $_SESSION['msg_type'] ?> mt-3"><button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+            <div class="card">
+              <?php if (isset($_SESSION['msg'])) : ?>
 
-
-                <?php echo $_SESSION['msg']; ?>
-              </div>
-              <!-- <?php unset($_SESSION['msg']); ?> -->
+                <div class="alert alert-<?= $_SESSION['msg_type'] ?> mt-3"><button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
 
 
-            <?php endif ?>
-            <div class="card-body">
-              <h4 class="card-title">Modify Answer(s) For [<?=$question?>]</h4>
-              <p class="card-description">
+                  <?php echo $_SESSION['msg']; ?>
+                </div>
+                <?php unset($_SESSION['msg']); ?>
 
-              </p>
-              <form action="./update-answers" method="POST">
-                <input type="hidden" name="qst" value="<?=$qst_id?>">
-               <?php $index = 0;?>
 
-                <?php while($row=$ans_4_question->fetch_assoc()): ?>
+              <?php endif ?>
+              <div class="card-body">
+                <h4 class="card-title">Select A Tutorial To Get Its Questions</h4>
+                <p class="card-description">
+
+                </p>
+                <form action="./add-answer? " method="GET" enctype="multipart/form-data">
+
+
+
                   <div class="form-group">
+                    <div class="form-group">
 
-<label for="exampleFormControlSelect1">Select The Associated Question</label>
-<div class="form-group">
-  <label for="exampleInputName1"><?=$row['answer_txt']?></label>
-  <?php $ans_txt="answer_text"."-".$row['answer_id'];?>
-  <input type="text" class="form-control" id="exampleInputName1" placeholder="<?=$row['answer_txt']?>" name="<?=$ans_txt?>" value="">
-  <input type="hidden" class="form-control" id="exampleInputName1" placeholder="<?=$row['answer_id']?>" name="<?=$row['answer_id']?>" value="<?=$row['answer_id']?>">
+                      <label for="exampleFormControlSelect1">Select The Associated Tutorial</label>
+                      <select class="form-control form-control-lg" id="exampleFormControlSelect1" name='tut-id'>
+                        <?php while ($row = $tut_res->fetch_assoc()) : ?>
+                          <option value="<?= $row['tut_id'] ?>"><?php echo $row['tut_title']; ?> </option>
+                        <?php endwhile ?>
 
-</div>
-
-<?php $index ++;?>
-               
-<?php endwhile ?>
+                        ?>
 
 
+                      </select>
+                    </div>
+                  </div>
+                  <button type="submit" name="sub-spec" class="btn btn-primary mr-2">Submit</button>
+                  <button class="btn btn-light">Cancel</button>
+                </form>
+              </div>
 
-
-            
-
-                <button type="submit" name="sub-ans" class="btn btn-primary mr-2">Submit</button>
-                <button class="btn btn-light">Cancel</button>
-              </form>
             </div>
           </div>
+
         </div>
+
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
-        <?php include 'views/partials/admin/footer.php' ?>
 
         <!-- partial -->
+
       </div>
+
       <!-- main-panel ends -->
+
     </div>
     <!-- page-body-wrapper ends -->
+
+    <?php include 'views/partials/admin/footer.php' ?>
+
   </div>
   <!-- container-scroller -->
   <?php include 'views/partials/admin/scripts.php' ?>

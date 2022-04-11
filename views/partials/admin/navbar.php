@@ -1,3 +1,16 @@
+<?php
+if (isset($_SESSION['admin_id'])) {
+  $admin_id = $_SESSION['admin_id'];
+  $res =  $mysqli->query("SELECT * FROM admins WHERE admin_id='$admin_id' LIMIT 1") or
+    die($mysqli->error);
+  if (mysqli_num_rows($res) > 0) {
+    $admin_name = $res->fetch_assoc()['admin_name'];
+  }
+}
+
+
+?>
+
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
           <a class="navbar-brand brand-logo" href="index.html"><img src="../public/admin/images/logo.svg" alt="logo"/></a>
@@ -126,14 +139,11 @@
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link dropdown-toggle  pl-0 pr-0" href="#" data-toggle="dropdown" id="profileDropdown">
                 <i class="typcn typcn-user-outline mr-0"></i>
-                <span class="nav-profile-name">Evan Morales</span>
+                <span class="nav-profile-name"><?= $admin_name ?></span>
               </a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                <a class="dropdown-item">
-                <i class="typcn typcn-cog text-primary"></i>
-                Settings
-                </a>
-                <a class="dropdown-item">
+               
+                <a class="dropdown-item" href="./sign-out">
                 <i class="typcn typcn-power text-primary"></i>
                 Logout
                 </a>

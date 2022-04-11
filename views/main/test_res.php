@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-session_start();
+// session_start();
 
 ?>
 
@@ -33,7 +33,8 @@ session_start();
             background: rgb(63, 139, 139);
             border: 1px solid black;
             position: relative;
-            min-height: 400px;
+            min-height: 500px;
+
             overflow: hidden;
   box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.2);
 
@@ -304,20 +305,17 @@ session_start();
 
 
     </div>
-    <?php
-    //include 'db-con.php';
-    //$tut_id = $_GET['tutorial-id'];
-    //if ($tut_id) {
-    //  $res =  $mysqli->query("SELECT * FROM  tut_questions WHERE tut_id='$tut_id' ") or
-    //    die($mysqli->error);
-    // while ($row = $res->fetch_assoc()) {
-    //   pre_r($row);
-    //}
-    //};
-    ?>
+    
 </div>
+<div class="" style=" transform:translateY(300px);">
+
+<?php include_once  'views/partials/main/comment-section.php' ?>
+</div>
+
+<div class="tut-footer" style=" transform:translateY(300px);">
 <?php include 'views/partials/main/footer.php' ?>
 
+</div>
 </body>
 
 </html>

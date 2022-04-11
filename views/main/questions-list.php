@@ -31,10 +31,10 @@ $res =  $mysqli->query("SELECT * FROM  tut_table ") or
      <div class="row">
         
 <?php        while($row=$res->fetch_assoc()):?>
-    <div class="col-md-12">
+    <div class="col-md-12 mt-2">
 
-<div class="tut-intro mt-5">
-<div onclick="redirectToQuestions(<?=$row['tut_id']?> )" class="  mt-4 " >Click To View <?=$row['tut_title']?> Questions</div>
+<div class="tut-intro"onclick="redirectToQuestions(<?=$row['tut_id']?> )" >
+<div class="  mt-4 " >Click To View <?=$row['tut_title']?> Questions</div>
 
 </div>              
          </div>
@@ -43,6 +43,11 @@ $res =  $mysqli->query("SELECT * FROM  tut_table ") or
      </div>
     </div>
 </div>
+<div class="" style=" transform:translateY(300px);">
+
+<?php include_once  'views/partials/main/comment-section.php' ?>
+</div>
+
 <div class="tut-footer" style=" transform:translateY(300px);">
 <?php include 'views/partials/main/footer.php' ?>
 

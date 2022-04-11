@@ -1,12 +1,14 @@
 <?php 
-$mysqli = new mysqli('localhost', 'root', '', 'learning_spy')  or die(mysqli_error($mysqli));
+
+$db_host="localhost";
+$db_user="root";
+$db_pass="";
+$db_name="learning_spy";
+
+$mysqli = new mysqli($db_host, $db_user, $db_pass, $db_name)  or die(mysqli_error($mysqli));
 
 
-// function pre_r($array){
-//     echo '<pre>';
-//     print_r($array);
-//       echo '<pre>';
-//   }
+
   
 
 ?>

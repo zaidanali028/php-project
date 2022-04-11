@@ -8,9 +8,14 @@
 <?php
  include 'db-con.php' ;
 
-$res =  $mysqli->query("SELECT * FROM  tut_questions ORDER BY  main_question ASC ") or
-  die($mysqli->error);
+ $tut_id=$_GET['tut-id'];
 
+
+
+
+$ans_res =  $mysqli->query("SELECT * FROM  tut_questions WHERE tut_id='$tut_id' ORDER BY tut_question_id DESC") or
+  die($mysqli->error);
+unset($_SESSION['tut-id']);
 
 ?>
 
@@ -68,12 +73,12 @@ $res =  $mysqli->query("SELECT * FROM  tut_questions ORDER BY  main_question ASC
  
   <?php echo $_SESSION['msg'];?>
 </div>
-<!-- <?php  unset   ($_SESSION['msg']);?> -->
+ <?php  unset   ($_SESSION['msg']);?>
 
 
    <?php endif ?>
             <div class="card-body">
-              <h4 class="card-title">Add Definitions To Your Tutorials</h4>
+              <h4 class="card-title">Add Answers To Tutorials Questions</h4>
               <p class="card-description">
 
               </p>
@@ -83,13 +88,14 @@ $res =  $mysqli->query("SELECT * FROM  tut_questions ORDER BY  main_question ASC
                   <label for="exampleInputName1">Answer To Add(MCQ)</label>
                   <input type="text" name="answer_txt" class="form-control" id="exampleInputName1" placeholder="A .Java is awesome">
                 </div>
-               
+                <?php $tut_id=$_GET['tut-id'] ?>
+               <input type="hidden" name="tut_id" value="<?=$tut_id?>">
                 <div class="form-group">
                   <div class="form-group">
 
                     <label for="exampleFormControlSelect1">Select The Associated Question</label>
                     <select class="form-control form-control-lg" id="exampleFormControlSelect1" name='question_id'>
-<?php        while($row=$res->fetch_assoc()):?>
+<?php        while($row=$ans_res->fetch_assoc()):?>
                   <option value="<?=$row['tut_question_id']?>"><?php echo $row['main_question'];?> </option>
                 
 

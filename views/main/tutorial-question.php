@@ -29,8 +29,9 @@
             background: rgb(63, 139, 139);
             border: 1px solid black;
             position: relative;
-            min-height: 400px;
+            min-height: 500px;
             overflow: hidden;
+            
   box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.2);
 
         }
@@ -59,52 +60,60 @@
         }
 
         .options {
-            position: relative;
-            padding-left: 30px
-        }
+    position: relative;
+    padding-left: 40px
+}
 
-        .options input {
-            opacity: 0
-        }
+#options label {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 14px;
+    cursor: pointer
+}
 
-        .checkmark {
-            position: absolute;
-            top: 4px;
-            left: 3px;
-            height: 20px;
-            width: 20px;
-            background-color: white;
-            border: 2px solid #444;
-            border-radius: 50%
-        }
+.options input {
+    opacity: 0
+}
 
-        .options input:checked~.checkmark:after {
-            display: block
-        }
+.checkmark {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #555;
+    border: 1px solid #ddd;
+    border-radius: 50%
+}
 
-        .options .checkmark:after {
-            content: "";
-            width: 9px;
-            height: 9px;
-            display: block;
-            background: black;
-            position: absolute;
-            top: 51%;
-            left: 51%;
-            border-radius: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            transition: 300ms ease-in-out 0s
-        }
+.options input:checked~.checkmark:after {
+    display: block
+}
 
-        .options input[type="radio"]:checked~.checkmark {
-            background: #fff;
-            border: 2px solid #fff;
-            transition: 300ms ease-in-out 0s
-        }
+.options .checkmark:after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    display: block;
+    background: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 300ms ease-in-out 0s
+}
 
-        .options input[type="radio"]:checked~.checkmark:after {
-            transform: translate(-50%, -50%) scale(1)
-        }
+.options input[type="radio"]:checked~.checkmark {
+    background: #21bf73;
+    transition: 300ms ease-in-out 0s
+}
+
+.options input[type="radio"]:checked~.checkmark:after {
+    transform: translate(-50%, -50%) scale(1)
+}
+
+
 
         .btn.btn-primary {
             background-color: rgb(63, 139, 139);
@@ -134,8 +143,8 @@
 <body>
 <?php include  'views/partials/main/modal.php' ?>
 
-<div class="main-section">
-   <div class="nav-content">
+<div class="main-section" >
+   <div class="nav-content" >
 <?php include 'views/partials/main/navbar.php' ?>
 
 </div>
@@ -155,7 +164,7 @@
             die($mysqli->error);
         $question_count =  $mysqli->query("SELECT COUNT(*) FROM  tut_questions WHERE tut_id='$tutId' ") or
             die($mysqli->error);
-        $qCount = $question_count->fetch_assoc()['COUNT(*)']
+        // $qCount = $question_count->fetch_assoc()['COUNT(*)']
         ?>
         <?php
         $index = 1;
@@ -175,14 +184,14 @@
 
 
 
-          <div class="to-back-of-nav" >
-          <form action ='./validate-answers' method='POST'>
+          <div class="to-back-of-nav">
+          <form action ='./validate-answers' method='POST' >
            <div class="wrap-main" >
 
-           <div class="wrapper"  >
-                <div class="wrap" id="q1" >
+           <div class="wrapper" style="" >
+                <div class="wrap" id="q1"  >
                     <div class="text-center pb-4" >
-                        <div class="h5 font-weight-bold"><span id="number"> </span><?= $index ?> of <?= $qCount ?></div>
+                        <div class="h5 font-weight-bold"><span id="number"> </span><?= $index ?> of 20</div>
                     </div>
                     <div class="h4 font-weight-bold"><?= $index ?>.  <?= $row['main_question'] ?> </div>
                     <input type="hidden" name="<?= "qst$index"?>" value="<?= $row['main_question']?>">
@@ -219,7 +228,7 @@
 include 'db-con.php';
 $tut_id = $_GET['tutorial-id'];
 if ($tut_id) {
-    $res =  $mysqli->query("SELECT * FROM  tut_questions WHERE tut_id='$tut_id' ") or
+    $res =  $mysqli->query("SELECT * FROM  tut_questions WHERE tut_id='$tut_id'  LIMIT 20") or
         die($mysqli->error);
     while ($row = $res->fetch_assoc()) {
      
@@ -227,8 +236,16 @@ if ($tut_id) {
 };
 ?>
 </div>
+
+<div class="" style=" transform:translateY(300px);">
+
+<?php include_once  'views/partials/main/comment-section.php' ?>
+</div>
+
+<div class="tut-footer" style=" transform:translateY(300px);">
 <?php include 'views/partials/main/footer.php' ?>
 
+</div>
 </body>
 
 </html>

@@ -51,6 +51,24 @@ function ans_validator($qst, $ans)
 
 ans_validator($_POST['qst1'], $_POST['ans1']);
 ans_validator($_POST['qst2'], $_POST['ans2']);
+ans_validator($_POST['qst3'], $_POST['ans3']);
+ans_validator($_POST['qst4'], $_POST['ans4']);
+ans_validator($_POST['qst5'], $_POST['ans5']);
+ans_validator($_POST['qst6'], $_POST['ans6']);
+ans_validator($_POST['qst7'], $_POST['ans7']);
+ans_validator($_POST['qst8'], $_POST['ans8']);
+ans_validator($_POST['qst9'], $_POST['ans9']);
+ans_validator($_POST['qst10'], $_POST['ans10']);
+ans_validator($_POST['qst11'], $_POST['ans11']);
+ans_validator($_POST['qst12'], $_POST['ans12']);
+ans_validator($_POST['qst13'], $_POST['ans13']);
+ans_validator($_POST['qst14'], $_POST['ans14']);
+ans_validator($_POST['qst15'], $_POST['ans15']);
+ans_validator($_POST['qst16'], $_POST['ans16']);
+ans_validator($_POST['qst17'], $_POST['ans17']);
+ans_validator($_POST['qst18'], $_POST['ans18']);
+ans_validator($_POST['qst19'], $_POST['ans19']);
+ans_validator($_POST['qst20'], $_POST['ans20']);
 
 $_SESSION['final_assessment'] = $gen_result;
 header("location: ./test_result");
